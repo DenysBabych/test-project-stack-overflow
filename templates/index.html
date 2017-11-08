@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>Dear visitor, you have two options:</h3>
+    <p>1. Enter USER_ID in form bellow and press "Get user's posts" button. You
+    will get list of user's posts.
+    </p>
+
+    <p>2. Press "Get my posts" button. In this case you will be redirected to
+    Login Application page on stackexchange. You should press approve button
+        to get your personal posts.
+    </p>
+{% from "_formhelpers.html" import render_field %}
+
+<!-- Form to get user's posts by his <user_id> -->
+<form method=post>
+  <dl>
+    {{ render_field(form.user_id) }}
+  </dl>
+    <p><input type=submit value="Get user's posts"></p>
+</form>
+
+<!-- Form to get posts of logged user. -->
+<form action="/get-personal-posts/" method="post">
+    <dl>
+        <input type="hidden" name="get_personal_posts" value="1">
+        <p><input type="submit" value="Get my posts"></p>
+    </dl>
+</form>
+
+{% if posts %}
+  <ul>User has next posts (posts and answers):
+  {% for post in posts %}
+    <li>{{ post.post_type|capitalize }}: <a href="{{ post.link }}">{{ post.link }}</a></li>
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>There is no posts for user.</p>
+{% endif %}
+
+</body>
+</html>
