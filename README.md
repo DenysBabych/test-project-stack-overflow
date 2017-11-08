@@ -16,8 +16,8 @@
 ```
     (env)$ pip install -r requirements.txt
 ```
-5. Run application:
+4. Run application:
 ```
     (env)$ python flask_app.py
 ```
-6. Open browser and go to page http://localhost:5000/
+5. Open browser and go to page http://localhost:5000/
